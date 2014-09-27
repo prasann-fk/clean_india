@@ -15,6 +15,9 @@ gem 'mysql2'
 gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem "will_paginate"
+gem 'gmaps4rails'
+gem "geocoder"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

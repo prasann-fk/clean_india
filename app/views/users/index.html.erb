@@ -1,14 +1,18 @@
 <div class="container">
   <div class="row">
     <h3>Users</h3>
+
+    <div class="apple_pagination">
+        <%= will_paginate @users, :container => false %>
+      </div>
     <div class="column">
       <table class="table">
         <tbody>
-          <% @users.each do |user| %>
+        <% @users.each do |user| %>
             <tr>
               <%= render user %>
             </tr>
-          <% end %>
+        <% end %>
         </tbody>
       </table>
     </div>

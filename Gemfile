@@ -18,6 +18,7 @@ gem 'unicorn-rails'
 gem "will_paginate"
 gem 'gmaps4rails'
 gem "geocoder"
+gem 'omniauth-facebook'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

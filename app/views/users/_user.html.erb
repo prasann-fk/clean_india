@@ -1,2 +1,5 @@
+<% if user.image %>
+    <td><p><img src="<%= user.image %>" style="width:200px;height:120px"></p></td>
+<% end %>
 <td><%= link_to user.name, user %></td>
 <td><%= link_to user.email, user %></td>

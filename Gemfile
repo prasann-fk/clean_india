@@ -19,6 +19,7 @@ gem "will_paginate"
 gem 'gmaps4rails'
 gem "geocoder"
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

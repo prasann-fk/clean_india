@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :user_providers
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -6,20 +7,14 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   def self.from_omniauth(auth)
-    user = where(provider: auth.provider, uid: auth.uid).first
-    return user if user
+    provider = UserProvider.where(provider: auth.provider, uid: auth.uid).first
+    return provider.user if provider
     user = where(email: auth.info.email).first
-    if user
-      user.update_attributes(provider: auth.provider, uid: auth.uid)
-      return user
-    else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
-        user.name = auth.info.name   # assuming the user model has a name
-        user.image = auth.info.image # assuming the user model has an image
-      end
-    end
+    user = User.create!(:email => auth.info.email, :password => Devise.friendly_token[0,20]) if user.nil?
+    user.user_providers.create!(provider: auth.provider, uid: auth.uid)
+    user.name = auth.info.name
+    user.image = auth.info.image
+    user
   end
 
 end

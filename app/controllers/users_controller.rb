@@ -6,11 +6,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(:page => params[:page], :per_page => 10)
+    @users = User.includes(:events).paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:events).find(params[:id])
     #unless @user == current_user
     #  redirect_to :back, :alert => "Access denied."
     #end

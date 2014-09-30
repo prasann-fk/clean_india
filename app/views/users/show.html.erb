@@ -4,3 +4,4 @@
 <% if @user.image %>
 <p>Image: <img src="<%= @user.image %>" style="width:200px;height:120px"></p>
 <% end %>
+<%= @user.events.present? ? @user.events : "No events recorded for the user" %>

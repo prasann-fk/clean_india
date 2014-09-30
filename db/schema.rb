@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140928061701) do
+ActiveRecord::Schema.define(version: 20140929114521) do
+
+  create_table "events", force: true do |t|
+    t.integer  "user_id"
+    t.text     "description"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.datetime "event_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_providers", force: true do |t|
     t.integer  "user_id"
